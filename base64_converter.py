@@ -1,4 +1,4 @@
-import pytest
+import unittest
 
 def hex_to_bytes(hex_string):
     """Convert a hex string to bytes."""
@@ -22,15 +22,17 @@ def bytes_to_base64(byte_data):
     
     return base64_string
 
-def test_hex_to_bytes():
-    assert hex_to_bytes("49276d") == b"I'm"
-    assert hex_to_bytes("68656c6c6f") == b"hello"
-    assert hex_to_bytes("776f726c64") == b"world"
 
-def test_bytes_to_base64():
-    assert bytes_to_base64(b"I'm") == "SSdt"
-    assert bytes_to_base64(b"hello") == "aGVsbG8="
-    assert bytes_to_base64(b"world") == "d29ybGQ="
+class TestBase64(unittest.TestCase):
+    def test_hex_to_bytes(self):
+        assert hex_to_bytes("49276d") == b"I'm"
+        assert hex_to_bytes("68656c6c6f") == b"hello"
+        assert hex_to_bytes("776f726c64") == b"world"
+
+    def test_bytes_to_base64(self):
+         assert bytes_to_base64(b"I'm") == "SSdt"
+         assert bytes_to_base64(b"hello") == "aGVsbG8="
+         assert bytes_to_base64(b"world") == "d29ybGQ="
 
 def test_full_conversion():
     hex_string = "49276d206b696c6c696e6720796f757220627261696e206c696b652061205047"
